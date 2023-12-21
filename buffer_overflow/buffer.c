@@ -2,12 +2,14 @@
 #include <stdlib.h>
 #include <string.h>
 #include <signal.h>
+#include <unistd.h>
 
 #define FLAGSIZE_MAX 64
 
 char flag[FLAGSIZE_MAX];
 
 void sigsegv_handler(int sig) {
+    printf("exploited\n");
     printf("%s\n", flag);
     fflush(stdout);
     exit(1);
@@ -30,15 +32,19 @@ int main(int argc, char **argv){
     fgets(flag,FLAGSIZE_MAX,f);
     signal(SIGSEGV, sigsegv_handler); // Set up signal handler
     
-    gid_t gid = getegid();
-    setresgid(gid, gid, gid);
+    // gid_t gid = getegid();
+    // setresgid(gid, gid, gid);
 
     printf("Input: ");
 
     fflush(stdout);
+    
     char buf1[100];
+    
     gets(buf1); 
     vuln(buf1);
+
+    printf("You entered: %s\n", buf1);
     printf("The program will exit now\n");
     return 0;
 }

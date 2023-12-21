@@ -6,7 +6,7 @@ int main() {
     puts("Welcome to our user email sweepstake!");
     puts("Only the first user gets the flag.");
 
-    unsigned char count = 5;  // hehe, start count at 5 so we don't have to pay out the flag ( •̀ᴗ•́ )
+    unsigned char count = 250;
     char email[32];
 
     while (1) {
@@ -16,7 +16,7 @@ int main() {
 
         if (count == 0) {
             printf("Congrats %s, you are the first user (count=%d).\n", email, count);
-            puts("flag{win}");
+            puts("CTF{1nt3g3r_0v3rfl0w_Ch4mp}");
             return 0;
         } else {
             printf("Sorry %s, you are not the first user (count=%d). No flag for you.\n", email, count);
